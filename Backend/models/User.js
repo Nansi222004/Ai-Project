@@ -31,6 +31,14 @@ const userSchema = new mongoose.Schema(
   { timestamps: true, toJSON: { virtuals: true } },
 )
 
+
+userSchema.virtual("interviews", {
+  ref: "Interview",
+  localField: "_id",
+  foreignField: "userId",
+});
+
+
 // Hide password when sending user object as JSON
 userSchema.set("toJSON", {
   transform: (doc, ret) => {
